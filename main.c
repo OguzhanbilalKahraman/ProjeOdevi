@@ -19,14 +19,14 @@ const float frequency_germ[20]={ 0.01, 0.89, 1.71, 3.90, 1.07, 3.61, 2.36, 2.31,
 int main(void)
 {
      printf("\n\n Dil tahmin programina hos geldiniz. Fatih ve Oguzun Proje Odevidir. \n\n") ;
-    char metin[500]; /*kullanıcıdan metin istedik */
+    char metin[500]; /*kullanÃ½cÃ½dan metin istedik */
 
     printf("Metni giriniz :\n\n\t\t");
     gets(metin);
 
     filter_str(metin);
     calculate_frequencies_bi(metin);         /* ^^^^^^^fonksiyonlar ^^^^^^^^ */
-    calculate_frequencies_tri(metin);
+    calculate_frequencies_tri(metin);        /* Burayi ortak yaptik */
     calculate_distances();
     detect_lang();
     printf("\n\n\n");
@@ -35,13 +35,13 @@ int main(void)
 }
 //fatih-> f memur->m oguzhan->o kahraman->k
 
-void filter_str(char str[])  /*ascii kodlari a-z arasi(a z dahil) tanimlandi for döngüsü ile kontrol edildi böylece filtre fonksiyonu islevli haline getirildi.*/
+void filter_str(char str[])  /*ascii kodlari a-z arasi(a z dahil) tanimlandi for dÃ¶ngÃ¼sÃ¼ ile kontrol edildi bÃ¶ylece filtre fonksiyonu islevli haline getirildi.*/
 {
 
      for(int i=0;i<strlen(str);i++)
       {
-          if((str[i]==32)||(str[i]==0)||(str[i]>64&&str[i]<91)||(str[i]>96&&str[i]<123));
-
+          if((str[i]==32)||(str[i]==0)||(str[i]>64&&str[i]<91)||(str[i]>96&&str[i]<123));    //Fatih
+                                                     
           else
             str[i]=' ';
       }
@@ -64,7 +64,7 @@ for(int i = 0,c = 0;i < 10;i++){
     sayac = 0.0;
     c = 0;
     while(c != strlen(str)-1){
-        for(int m = 0;m < 2;m++){
+        for(int m = 0;m < 2;m++){                      //Oguz
             text_div[m] = str[c];
             c++;
         }
@@ -84,7 +84,7 @@ printf("\n\n\n\n");
 printf(" Iste girdiginiz metnin Bigram frekanslari :\n\t\n");
 
 for(int i = 0;i < 10;i++){
-   printf(" %.2f, ",calculated_frequencies[i]); //frekans degelerini anlamlı basamak dahilinde virgülden sonraki 2 basamaka ayalardım
+   printf(" %.2f, ",calculated_frequencies[i]); //frekans degelerini anlamlÃ½ basamak dahilinde virgÃ¼lden sonraki 2 basamaka ayalardÃ½m
 }
 
 
@@ -103,7 +103,7 @@ for(int i = 0,c = 0;i < 10;i++){
     ctrl[3] = '\0';
     sayac = 0.0;
     c = 0;
-    while(c != strlen(str)-2){
+    while(c != strlen(str)-2){                    //Fatih
         for(int m = 0;m < 3;m++){
             text_div[m] = str[c];
             c++;
@@ -122,11 +122,11 @@ for(int i = 0,c = 0;i < 10;i++){
 printf("\n\n  \n\n");
 printf(" Iste girdiginiz metnin Trigram frekanslari :\n\t\n");
 for(int i = 10;i < 20;i++){
-   printf(" %.2f, ",calculated_frequencies[i]); //ayni şekilde bigramlara yaptigimizi burada da yaparak frekans degerlerini anlamli basamak dahilinde virgülden sonraki 2 basamaka ayalardik
+   printf(" %.2f, ",calculated_frequencies[i]); //ayni Ã¾ekilde bigramlara yaptigimizi burada da yaparak frekans degerlerini anlamli basamak dahilinde virgÃ¼lden sonraki 2 basamaka ayalardik
 }
 }
 
-//Öklit hesaplamasina göre distance(mesafe)(fark) hesapladik
+//Ã–klit hesaplamasina gÃ¶re distance(mesafe)(fark) hesapladik
 void calculate_distances(){
     float sum = 0.0;
 
@@ -138,7 +138,7 @@ void calculate_distances(){
     }
 
     distances[0] = sqrt(sum);
-    printf("\n Girdiginiz metnin Ingilizce dili ile arasindaki distance degerleri  :\n\n");
+    printf("\n Girdiginiz metnin Ingilizce dili ile arasindaki distance degerleri  :\n\n");   //Oguz
     printf("===> %f\n",distances[0]);
 
     sum = 0.0;
@@ -152,14 +152,14 @@ void calculate_distances(){
 
 }
 
-//dili algilarken distance(mesafe) azaldikça benzerlik o orantıda artar yani ne kadar az ise o kadar benzerdir kodu yazarken aklinda olsun
+//dili algilarken distance(mesafe) azaldikÃ§a benzerlik o orantÃ½da artar yani ne kadar az ise o kadar benzerdir kodu yazarken aklinda olsun
 void detect_lang(){
 
  printf("\n\n \n\n");                                         //distance mesafesi az olan dil daha benzer olacagindan if-else yapisi ile tamamladik.
  printf("Tahmin :\n\n");
  if(distances[0] < distances[1]){
     printf("===> Bu dil ingilizcedir. .");
- }
+ }                                                                 //Fatih
  else{
     printf("===> Bu dil almancadir  .");
  }
