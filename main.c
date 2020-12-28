@@ -165,3 +165,6 @@ void detect_lang(){
  }
 
 }
+
+
+//her ne kadar isim yazsakta birbirimize yardim ettik, her asamada ikimizinde parmagi vardir. iyi grup olduk :)))
